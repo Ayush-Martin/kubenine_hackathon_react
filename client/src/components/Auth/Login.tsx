@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { login } = useAuth();

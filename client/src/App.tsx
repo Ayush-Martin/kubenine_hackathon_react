@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import Login from "./components/Login";
+import Login from "./components/Auth/Login";
 import { RootState } from "./store";
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 
 const App = () => {
   const { userId, authToken } = useSelector((state: RootState) => state.auth);
