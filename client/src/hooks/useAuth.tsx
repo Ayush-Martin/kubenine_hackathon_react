@@ -21,7 +21,16 @@ const useAuth = () => {
     }
   };
 
-  return { login };
+  const logout = async () => {
+    try {
+      await api.post("/logout");
+      dispatch(setCredentials({ userId: null, authToken: null }));
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
+  return { login, logout };
 };
 
 export default useAuth;
