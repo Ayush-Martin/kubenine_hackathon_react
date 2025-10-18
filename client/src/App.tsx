@@ -1,23 +1,12 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import Login from "./components/Login";
-import AuthContext from "./context/AuthContext";
+import { RootState } from "./store";
 import Home from "./components/Home";
 
 const App = () => {
-  const [userId, setUserId] = useState("");
-  const [authToken, setAuthToken] = useState("");
+  const { userId, authToken } = useSelector((state: RootState) => state.auth);
 
-  console.log("App render - userId:", userId, "authToken:", authToken);
-
-  return (
-    <div>
-      <AuthContext.Provider
-        value={{ userId, authToken, setUserId, setAuthToken }}
-      >
-        {userId && authToken ? <Home /> : <Login />}
-      </AuthContext.Provider>
-    </div>
-  );
+  return <div>{userId && authToken ? <Home /> : <Login />}</div>;
 };
 
 export default App;

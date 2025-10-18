@@ -1,20 +1,23 @@
-import { useContext } from "react";
 import api from "../config/axios";
-import AuthContext from "../context/AuthContext";
+
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
+import { setCredentials } from "../features/slice/authSlice";
 
 const useAuth = () => {
-  const authContext = useContext(AuthContext)!;
+  const dispatch: AppDispatch = useDispatch();
 
   const login = async (username: string, password: string) => {
     try {
       const response = await api.post("/login", { username, password });
-      console.log("Login response:", response.data);
-      authContext.setUserId(response.data.data.userId);
-      authContext.setAuthToken(response.data.data.authToken);
-      return response.data;
+      dispatch(
+        setCredentials({
+          userId: response.data.data.userId,
+          authToken: response.data.data.authToken,
+        })
+      );
     } catch (error) {
-      console.error("Login error:", error);
-      throw error;
+      console.error("Login failed:", error);
     }
   };
 

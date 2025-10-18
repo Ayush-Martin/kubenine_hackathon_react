@@ -1,6 +1,6 @@
-import { Sidebar } from "lucide-react";
 import { useState } from "react";
 import ChatArea from "./ChatArea";
+import Sidebar from "./Sidebar";
 
 const Home = () => {
   const [selectedChannel, setSelectedChannel] = useState("1");
